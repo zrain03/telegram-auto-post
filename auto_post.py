@@ -1,9 +1,10 @@
 from pyrogram import Client
+import os
 import time
 
-api_id = 20240995  # ID API anda
-api_hash = "a6cb8eb76c7e91215e483416a29dc0e0"
-phone_number = "+60194848631"
+api_id = int(os.getenv("API_ID"))  # ID API dari environment variable
+api_hash = os.getenv("API_HASH")  # Hash API dari environment variable
+phone_number = os.getenv("PHONE_NUMBER")  # Nombor telefon dari environment variable
 
 app = Client("my_account", api_id=api_id, api_hash=api_hash)
 
