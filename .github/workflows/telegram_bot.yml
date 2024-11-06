@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Telegram Bot
         env:
-          API_ID: ${{ secrets.API_ID }}
-          API_HASH: ${{ secrets.API_HASH }}
+          API_ID: "20240995"
+          API_HASH: "a6cb8eb76c7e91215e483416a29dc0e0"
           SESSION_STRING: "BQE02mMAEQ83KHZ0hOUyHrS6nCpZSurJ6-xonZklz3Naht9WNBUEwbLSYMZ90aRd6xT0t9gpg5EvGyI2bGx0WiE23S4GREm_jwRKntRj_pM3megHDtyp9gAux_il7GyFZ5dR5lgG-1Z5xVVaGhX2wl3808Q8J2MMFumu8frRmglqDgW8jQ7HPiSzYZb2BvY3nFyEJuXUAEY70J084iQGGYUp1Mr6FyZWy-hQxNc6U8fny7URmfAQxwypyoUQpZqJ62ADgY3fIMRX-Z40AivqYXLw2X-wcml8Lih1ziDTiM0bjTo_p3mQuFKKM5jmB7btei5qHio3tVNSFys7C_C7j5P7GnBcsQAAAAAfcSmPAA"
         run: python posting.py
