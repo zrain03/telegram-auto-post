@@ -3,12 +3,9 @@ import asyncio
 import os
 
 # Get credentials from environment variables
-api_id = int(os.getenv("API_ID"))  # GitHub Secret for API ID
-api_hash = os.getenv("API_HASH")   # GitHub Secret for API Hash
-session_string = os.getenv("SESSION_STRING")  # GitHub Secret for Session String
-
-# Specify a custom session file name
-session_file = "my_telegram_session"  # You can choose any simple name
+api_id = int(os.getenv("API_ID"))
+api_hash = os.getenv("API_HASH")
+session_string = os.getenv("SESSION_STRING")
 
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
@@ -31,7 +28,7 @@ async def send_message(app, target_chat_id):
 
 # Main async function to setup client and start posting
 async def main():
-    async with Client(session_file, api_id=api_id, api_hash=api_hash) as app:
+    async with Client(session_string, api_id=api_id, api_hash=api_hash) as app:
         tasks = [send_message(app, group_id) for group_id in groups]
         await asyncio.gather(*tasks)
 
