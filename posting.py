@@ -48,7 +48,7 @@ async def post_to_2_minutes_groups(app):
     while True:
         tasks = [send_message(app, group_id) for group_id in groups_2_minutes.values()]
         await asyncio.gather(*tasks)
-        await asyncio.sleep(120)  # Wait 2 minutes
+        await asyncio.sleep(43200)  # Wait 12 hour
 
 # Loop for sending messages every 1 hour to other groups
 async def post_to_1_hour_groups(app):
