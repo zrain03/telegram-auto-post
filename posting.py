@@ -28,7 +28,7 @@ async def send_message(app, target_chat_id):
 
 # Main async function to setup client and start posting
 async def main():
-    async with Client(session_string, api_id=api_id, api_hash=api_hash) as app:
+    async with Client("my_session", api_id=api_id, api_hash=api_hash, session_string=session_string) as app:
         tasks = [send_message(app, group_id) for group_id in groups]
         await asyncio.gather(*tasks)
 
