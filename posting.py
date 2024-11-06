@@ -1,10 +1,11 @@
 from pyrogram import Client, errors
 import asyncio
+import os
 
-# Hardcoded credentials and session string
-api_id = 20240995
-api_hash = "a6cb8eb76c7e91215e483416a29dc0e0"
-session_string = "BQE02mMAEQ83KHZ0hOUyHrS6nCpZSurJ6-xonZklz3Naht9WNBUEwbLSYMZ90aRd6xT0t9gpg5EvGyI2bGx0WiE23S4GREm_jwRKntRj_pM3megHDtyp9gAux_il7GyFZ5dR5lgG-1Z5xVVaGhX2wl3808Q8J2MMFumu8frRmglqDgW8jQ7HPiSzYZb2BvY3nFyEJuXUAEY70J084iQGGYUp1Mr6FyZWy-hQxNc6U8fny7URmfAQxwypyoUQpZqJ62ADgY3fIMRX-Z40AivqYXLw2X-wcml8Lih1ziDTiM0bjTo_p3mQuFKKM5jmB7btei5qHio3tVNSFys7C_C7j5P7GnBcsQAAAAAfcSmPAA"
+# Get credentials from environment variables
+api_id = int(os.getenv("API_ID"))  # GitHub Secret for API ID
+api_hash = os.getenv("API_HASH")   # GitHub Secret for API Hash
+session_string = os.getenv("SESSION_STRING")  # GitHub Secret for Session String
 
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
