@@ -1,32 +1,31 @@
-name: Auto Post to Telegram
+name: Telegram Bot Automation
 
 on:
+  workflow_dispatch:   # Allows manual triggering
   schedule:
-    - cron: '*/2 * * * *'  # This runs every 2 minutes
-  workflow_dispatch:  # Allows manual trigger from GitHub
+    - cron: '*/2 * * * *' # Every 2 minutes (used for 2-minute groups)
+    - cron: '0 * * * *'   # Every hour (used for 1-hour groups)
 
 jobs:
-  send_message:
+  run-bot:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out the repository
         uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  # Set the Python version
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyrogram tgcrypto
+          pip install pyrogram
 
-      - name: Run the script
+      - name: Run Telegram Bot
         env:
           API_ID: ${{ secrets.API_ID }}
           API_HASH: ${{ secrets.API_HASH }}
-          PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
-        run: |
-          python auto_post.py
+        run: python posting.py
