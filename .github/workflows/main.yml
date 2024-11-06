@@ -3,8 +3,7 @@ name: Telegram Bot Automation
 on:
   workflow_dispatch:   # Allows manual triggering
   schedule:
-    - cron: '0 */12 * * *' # Every 12 hours
-    - cron: '0 * * * *'    # Every hour (used for 1-hour groups)
+    - cron: '0 * * * *'    # Every hour
 
 jobs:
   run-bot:
@@ -28,4 +27,5 @@ jobs:
         env:
           API_ID: ${{ secrets.API_ID }}
           API_HASH: ${{ secrets.API_HASH }}
+          MY_ACCOUNT_SESSION: ${{ secrets.MY_ACCOUNT_SESSION }}
         run: python posting.py
