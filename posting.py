@@ -10,7 +10,7 @@ session_string = os.getenv("SESSION_STRING")  # Your session string for the pers
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
 groups = [
-    -1002288720559, -1002200241778, -1002247030893, -1002452835138, -1001161916810,
+    -1001161916810,
     -1002056756757, -1001656152814, -1001641889050, -1002032128619, -1001513360832,
     -1002083219543, -1001338686972, -1002080497857, -1001194015232, -1002080593272,
     -1001473865431, -1001778610644, -1002065798504, -1002007115271
