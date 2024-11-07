@@ -29,13 +29,14 @@ async def send_message(app, target_chat_id):
         print(f"An error occurred: {e}")
 
 # Check if it's within the first minute of the hour (e.g., 6:00:00 to 6:00:59)
-def check_if_on_hour():
+def check_if_in_time_window():
     current_time = datetime.now()
-    return current_time.minute == 0  # Checks if it's exactly at the start of any hour
+    # Check if the current minute is 0 (for any hour) and the second is between 0 to 59
+    return current_time.minute == 0 and current_time.second < 60  # 6:00:00 to 6:00:59
 
 # Main async function to setup client and start posting
 async def main():
-    if check_if_on_hour():  # Only run the posting process if it's within the first minute of the hour
+    if check_if_in_time_window():  # Only run the posting process within the first minute of the hour (6:00:00 to 6:00:59)
         async with Client("my_session", api_id=api_id, api_hash=api_hash, session_string=session_string) as app:
             tasks = [send_message(app, group_id) for group_id in groups]
             await asyncio.gather(*tasks)
