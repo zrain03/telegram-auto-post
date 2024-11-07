@@ -5,8 +5,8 @@ from datetime import datetime
 
 # Get credentials from environment variables
 api_id = int(os.getenv("API_ID"))
-api_hash = os.getenv("API_HASH"))
-session_string = os.getenv("SESSION_STRING"))
+api_hash = os.getenv("API_HASH")  # Removed the extra parenthesis here
+session_string = os.getenv("SESSION_STRING")  # Removed the extra parenthesis here
 
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
@@ -16,7 +16,6 @@ groups = [
     -1002032128619, -1001473865431, -1002080497857, -1001194015232,
     -1002200241778, -1002247030893, -1002452835138, -1002056756757
 ]
-
 
 # Function to send a message to a target chat
 async def send_message(app, target_chat_id):
