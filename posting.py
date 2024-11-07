@@ -5,8 +5,8 @@ from datetime import datetime
 
 # Get credentials from environment variables
 api_id = int(os.getenv("API_ID"))
-api_hash = os.getenv("API_HASH")  # Removed the extra parenthesis here
-session_string = os.getenv("SESSION_STRING")  # Removed the extra parenthesis here
+api_hash = os.getenv("API_HASH")
+session_string = os.getenv("SESSION_STRING")
 
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
@@ -28,14 +28,14 @@ async def send_message(app, target_chat_id):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Check if it's exactly on the hour
+# Check if it's within the first minute of the hour (e.g., 6:00:00 to 6:00:59)
 def check_if_on_hour():
     current_time = datetime.now()
-    return current_time.minute == 0 and current_time.second == 0
+    return current_time.minute == 0  # Checks if it's exactly at the start of any hour
 
 # Main async function to setup client and start posting
 async def main():
-    if check_if_on_hour():  # Only run the posting process if it's exactly on the hour
+    if check_if_on_hour():  # Only run the posting process if it's within the first minute of the hour
         async with Client("my_session", api_id=api_id, api_hash=api_hash, session_string=session_string) as app:
             tasks = [send_message(app, group_id) for group_id in groups]
             await asyncio.gather(*tasks)
