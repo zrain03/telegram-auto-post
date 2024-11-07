@@ -3,7 +3,7 @@ name: Telegram Bot Automation
 on:
   workflow_dispatch:   # Allows manual triggering
   schedule:
-    - cron: '59 * * * *'  # Runs at 59 minutes past each hour
+    - cron: '0 * * * *'  # Runs at the start of every hour (00 minutes past each hour)
 
 jobs:
   run-bot:
