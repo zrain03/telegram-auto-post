@@ -8,13 +8,14 @@ api_id = int(os.getenv("API_ID"))
 api_hash = os.getenv("API_HASH")
 session_string = os.getenv("SESSION_STRING")
 
-# Message content and list of groups with Chat IDs
+# Message content and list of groups with Chat IDs (updated list)
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
 groups = [
     -1002288720559, -1001161916810, -1001656152814, -1001513360832,
     -1001338686972, -1002083219543, -1002080593272, -1001641889050,
     -1002032128619, -1001473865431, -1002080497857, -1001194015232,
-    -1002200241778, -1002247030893, -1002452835138, -1002056756757
+    -1002200241778, -1002247030893, -1002452835138, -1002056756757,
+    -1001778610644  # New group added
 ]
 
 # Function to send a message to a target chat
