@@ -3,9 +3,9 @@ import asyncio
 import os
 
 # Get credentials from environment variables
-api_id = int(os.getenv("API_ID"))
-api_hash = os.getenv("API_HASH")
-session_string = os.getenv("SESSION_STRING")
+api_id = int(os.getenv("API_ID"))  # Your API ID from Telegram
+api_hash = os.getenv("API_HASH")  # Your API Hash from Telegram
+session_string = os.getenv("SESSION_STRING")  # Your session string for the personal account
 
 # Message content and list of groups with Chat IDs
 message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
@@ -19,24 +19,31 @@ groups = [
 # Function to send a message to a target chat
 async def send_message(app, target_chat_id):
     try:
+        # Attempt to send the message to each group
         await app.send_message(target_chat_id, message_content)
         print(f"Mesej dihantar ke {target_chat_id}")
     except errors.PeerIdInvalid:
+        # Catch PeerIdInvalid error for invalid or inaccessible group IDs
         print(f"Error: Peer id invalid for group {target_chat_id}")
     except errors.ChatWriteForbidden:
+        # Catch if the bot doesn't have permission to send messages to the group
         print(f"Error: No write access to group {target_chat_id}")
     except errors.FloodWait as e:
+        # Handle Telegram's rate limit error
         print(f"Rate limited by Telegram. Waiting for {e.x} seconds.")
-        await asyncio.sleep(e.x)
+        await asyncio.sleep(e.x)  # Wait for the specified time
     except Exception as e:
+        # Catch any other unexpected errors
         print(f"An error occurred for group {target_chat_id}: {e}")
 
 # Main async function to setup client and start posting
 async def main():
+    # Use the personal account session string and login credentials
     async with Client("my_session", api_id=api_id, api_hash=api_hash, session_string=session_string) as app:
+        # Create a list of tasks to send messages to all groups
         tasks = [send_message(app, group_id) for group_id in groups]
-        await asyncio.gather(*tasks)
+        await asyncio.gather(*tasks)  # Wait for all tasks to finish
 
 # Run the asynchronous main function
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(main())  # Start the program
