@@ -8,11 +8,12 @@ api_hash = os.getenv("API_HASH")  # Your API Hash from Telegram
 session_string = os.getenv("SESSION_STRING")  # Your session string for the personal account
 
 # Message content and list of groups with Chat IDs
-message_content = "https://t.me/mpgoviralgrowthtools (admin share 3 kali MP goviral setiap hari)"
+message_content = """اَللهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ
+Allahumma salli 'ala Sayyidina Muhammad wa 'ala ali Sayyidina Muhammad"""
 groups = [
     -1001161916810, -1001897381179, -1002056756757, -1001656152814, -1001641889050, 
     -1002032128619, -1001513360832, -1002083219543, -1001338686972, -1002080497857, 
-    -1001194015232, -1002080593272, -1001473865431, -1001778610644, -1002065798504, -1002329458039,
+    -1001194015232, -1002080593272, -1001473865431, -1002065798504, -1002329458039,
     -1002379900836, -1001192339217, -1001875616025, -1001938068566, -1001626914578, -1002174886965, -1001965994500
 ]
 
