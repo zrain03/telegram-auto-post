@@ -1,4 +1,4 @@
-from pyrogram import Client, errors
+from telethon import TelegramClient, errors
 import asyncio
 import os
 
@@ -19,31 +19,32 @@ groups = [
 ]
 
 # Function to send a message to a target chat
-async def send_message(app, target_chat_id):
+async def send_message(client, target_chat_id):
     try:
         # Attempt to send the message to each group
-        await app.send_message(target_chat_id, message_content)
-        print(f"Mesej dihantar ke {target_chat_id}")
-    except errors.PeerIdInvalid:
+        await client.send_message(target_chat_id, message_content)
+        print(f"Message sent to {target_chat_id}")
+    except errors.PeerIdInvalidError:
         # Catch PeerIdInvalid error for invalid or inaccessible group IDs
         print(f"Error: Peer id invalid for group {target_chat_id}")
-    except errors.ChatWriteForbidden:
+    except errors.ChatWriteForbiddenError:
         # Catch if the bot doesn't have permission to send messages to the group
         print(f"Error: No write access to group {target_chat_id}")
-    except errors.FloodWait as e:
+    except errors.FloodWaitError as e:
         # Handle Telegram's rate limit error
-        print(f"Rate limited by Telegram. Waiting for {e.x} seconds.")
-        await asyncio.sleep(e.x)  # Wait for the specified time
+        print(f"Rate limited by Telegram. Waiting for {e.seconds} seconds.")
+        await asyncio.sleep(e.seconds)  # Wait for the specified time
     except Exception as e:
         # Catch any other unexpected errors
         print(f"An error occurred for group {target_chat_id}: {e}")
 
 # Main async function to setup client and start posting
 async def main():
-    # Use the personal account session string and login credentials
-    async with Client("my_session", api_id=api_id, api_hash=api_hash, session_string=session_string) as app:
+    # Initialize Telethon client with the session string
+    client = TelegramClient(StringSession(session_string), api_id, api_hash)
+    async with client:
         # Create a list of tasks to send messages to all groups
-        tasks = [send_message(app, group_id) for group_id in groups]
+        tasks = [send_message(client, group_id) for group_id in groups]
         await asyncio.gather(*tasks)  # Wait for all tasks to finish
 
 # Run the asynchronous main function
